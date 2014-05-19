@@ -60,7 +60,7 @@ class Battleship
     puts "Play again? (y/n)"
     again = gets.chomp.to_s.downcase
     if again == "y"
-      replay
+      initialize
     elsif again == "n"
       puts "Thanks for playing, see you next time captain!"
       exit
@@ -68,10 +68,6 @@ class Battleship
       puts "Please make a correct selection of (y/n)"
       another_game
     end
-  end
-  
-  def replay
-    setup_board; ship_row; ship_col; game
   end
 end
 
