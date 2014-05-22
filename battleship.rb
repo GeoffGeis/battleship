@@ -1,31 +1,16 @@
 class Battleship
-  attr_accessor :debug
+  attr_accessor(:debug)
   
   def initialize
     @debug = false
-    @board = setup_board
-    @ship_row = ship_row
-    @ship_col = ship_col
-  end
-  
-  def setup_board
-    (1..5).map do |x|
-      ["O"] * 5
-    end
-  end
-  
-  def ship_row
-    Random.rand(0..@board.length - 1)
-  end
-  
-  def ship_col
-    Random.rand(0..@board[0].length - 1)
+    @board = (1..5).map { |x| ["O"] * 5 }
+    @ship_row = Random.rand(0..@board.length - 1)
+    @ship_col = Random.rand(0..@board[0].length - 1)
+    game
   end
   
   def print_board
-    board = @board.map do |row|
-      puts row.join
-    end
+    @board.map { |row| puts row.join }
   end
   
   def game
@@ -66,7 +51,7 @@ class Battleship
     puts "Play again? (y/n)"
     again = gets.chomp.to_s.downcase
     if again == "y"
-      replay
+      initialize
     elsif again == "n"
       puts "Thanks for playing, see you next time captain!"
       exit
@@ -75,16 +60,7 @@ class Battleship
       another_game
     end
   end
-  
-  def replay
-    @board = setup_board
-    @ship_row = ship_row
-    @ship_col = ship_col
-    game
-  end
-  
 end
 
-battleship = Battleship.new
-battleship.debug = false
-battleship.game
+bs = Battleship.new
+bs.debug = false
